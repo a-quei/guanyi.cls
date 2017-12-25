@@ -1,0 +1,91 @@
+\mode<presentation>
+
+% Requirements
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+% Defining Commands
+\newcommand\beamermathcolor[1]{\color{#1}\setbeamercolor{math text}{fg=#1}}
+
+% Settings
+
+\setbeamertemplate{title page}[empty]
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{subtitle}{size=\small}
+
+\setbeamercovered{transparent}
+
+\definecolor{pigment}{rgb}{0.2, 0.2, 0.6}
+\definecolor{darkgray}{rgb}{0.66, 0.66, 0.66}
+\definecolor{purple}{rgb}{0.6,0,0.6}
+
+\setbeamercolor{frametitle}{fg=pigment,bg=white}
+\setbeamercolor{title}{fg=pigment,bg=white}
+\setbeamercolor{local structure}{fg=pigment}
+\setbeamercolor{section in toc}{fg=pigment,bg=white}
+\setbeamercolor{footline}{fg=darkgray, bg=white}
+\setbeamercolor{item projected}{fg=pigment,bg=white}
+\setbeamercolor{math text}{fg=purple}
+\let\Tiny=\tiny
+
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+
+\usefonttheme[onlymath]{serif}
+
+\AtBeginPart{}
+\AtBeginSection[]
+{
+ \begin{frame}<beamer>
+ \frametitle{Overview}
+ \tableofcontents[currentsection]
+ \end{frame}
+}
+\AtBeginSubsection{}
+\AtBeginSubsubsection{}
+\setlength{\emergencystretch}{0em} % prevent overfull lines
+\setlength{\parskip}{0pt}
+
+
+\defbeamertemplate*{footline}{my footline}
+{
+\ifnum \insertpagenumber=1
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=\paperwidth,ht=.80ex,dp=1ex,center]{}%
+% empty environment to raise height
+\end{beamercolorbox}}%
+\vskip0pt%
+\else
+\hspace*{5pt}\Tiny{%
+ \insertshortauthor\hfill\insertshorttitle\hfill\insertframenumber/\inserttotalframenumber\hspace{.5pt} \vspace*{5pt}}
+\fi
+}
+
+\setbeamertemplate{frametitle}
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.3cm,left,wd=\the\@tempdima]{frametitle}
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@fteleft\endcsname\fi%
+    {\strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1.5ex%
+    \rule{\dimexpr\paperwidth-0.6cm\relax}{0.4pt}}
+    \if@tempswa\else\vskip-.3cm\fi%
+  \end{beamercolorbox}%
+    %
+}
+
+\setbeamertemplate{itemize item}{\beamermathcolor{pigment}$\bullet$}
+\setbeamertemplate{itemize subitem}{\beamermathcolor{pigment}\scriptsize{$\bullet$}}
+
+\mode<all>

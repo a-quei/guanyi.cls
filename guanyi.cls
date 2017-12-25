@@ -7,12 +7,28 @@
 %% linguistic journal.
 %%
 
-
 \LoadClass{article}
 
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesClass{guanyi}[my custom article class]
+
+
+%%
+%% ----- Options -----
+%%
+
+\RequirePackage{ifthen}
+
+\newboolean{ling}
+\setboolean{ling}{false}
+\newboolean{palatino}
+\setboolean{palatino}{false}
+
+\DeclareOption{linguistics}{\setboolean{ling}{true}}
+\DeclareOption{palatino}{\setboolean{ling}{true}}
+
+\ProcessOptions
 
 %%
 %% ----- Make Title -----
@@ -43,7 +59,7 @@
 %%
 %% ----- Page Layout -----
 %%
-\RequirePackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\RequirePackage[margin=25mm]{geometry}
 
 %%
 %% ----- Make Title -----
@@ -57,3 +73,27 @@
 \RequirePackage{sectsty}
 \sectionfont{\large\bfseries\mathversion{bold}}
 \subsectionfont{\normalsize\bfseries\mathversion{bold}}
+
+
+%%
+%% ----- Always Used Packages -----
+%%
+\RequirePackage{url}
+\RequirePackage{apacite}
+\RequirePackage{natbib}
+\RequirePackage{microtype}
+
+% figures
+
+% linguistic packages
+\ifthenelse{\boolean{ling}}
+    {\RequirePackage{gb4e}%
+    \noautomath%
+    \RequirePackage{qtree}%
+    \usepackage{tikz-dependency}}
+    {}
+
+% fonts
+\ifthenelse{\boolean{palatino}}
+    {\RequirePackage{palatino}}
+    {}
