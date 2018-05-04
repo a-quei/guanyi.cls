@@ -4,6 +4,11 @@
 
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{microtype}
 
 % Defining Commands
 \newcommand\beamermathcolor[1]{\color{#1}\setbeamercolor{math text}{fg=#1}}
@@ -84,6 +89,17 @@
   \end{beamercolorbox}%
     %
 }
+
+\newcommand{\bigframe}[1]{
+{\setbeamercolor{background canvas}{bg=pigment}
+\begin{frame}[plain,c]
+    \begin{center}
+        \Huge \textcolor{white}{#1}
+    \end{center}
+\end{frame}
+}
+}
+
 
 \setbeamertemplate{itemize item}{\beamermathcolor{pigment}$\bullet$}
 \setbeamertemplate{itemize subitem}{\beamermathcolor{pigment}\scriptsize{$\bullet$}}
